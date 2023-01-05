@@ -1,34 +1,24 @@
-# Weather station based on ESP32 and MicroPython
+# Automatic plant irrigation based on Pi Pico and MicroPython
 
-This is a weather station based on ESP32 and MicroPython.
 
 Here is a list of main features:
 
-*  Measuring temperature and humidity with DHT22 sensor
-*  Measuring CO2 level with MH-Z19B sensor
+*  Measuring soil moisture levels with a [Capacitive moisture sensor](https://thepihut.com/products/capacitive-soil-moisture-sensor)
 *  Sending data to a Google sheet
 *  Supporting Google OAuth 2.0 service to get access to the sheet
-*  Reporting network connection status, errors and high CO2 level with LEDs
+*  Reporting network connection status, errors and moisture levels with [LEDs](https://thepihut.com/products/adafruit-neopixel-ring-12-x-5050-rgbw-leds-w-integrated-drivers)
 *  Configuring the device via web browser
 
 The sheet doesn't need to be publicly available on the Internet. The device doesn't require any middleman such as PushingBox or IFTTT.
 
-This README contains a brief description how the project can be built. More details can be found in the following blogs:
+This README contains a brief description how the project can be built. 
 
-*  [MicroPython on ESP32: sending data to Google Sheets](https://blog.gypsyengineer.com/en/diy-electronics/micropython-on-esp32-sending-data-to-google-sheets.html)
-*  [Weather station based on ESP32 and MicroPython](https://blog.gypsyengineer.com/en/diy-electronics/weather-station-based-on-esp32-and-micropython.html)
-*  [Measuring CO2 with MH-Z19B on ESP32](https://blog.gypsyengineer.com/en/diy-electronics/measuring-co2-with-mh-z19b-on-esp32.html)
+## How to make an irrigation system
 
-## How to make a weather station
-
-Here is a [circuit](circuit/ESP32_weather_station_1_2_0_schem.png).
-
-The project uses [MicroPython 1.13](https://github.com/micropython/micropython/releases/tag/v1.13). Older or newer versions may also work.
+The project uses [Micropython for Pico W, version rp2-pico-w-20221220-unstable-v1.19.1-782-g699477d12.uf2](https://micropython.org/download/rp2-pico-w/).
 The project uses the following tools:
 
-*  `esptool` for flashing ESP32
-*  `mpfshell` for uploading files to ESP32
-*  `minicom` for connecting to ESP32 for debugging purposes
+*  `Pycharm Community edition with the Micropython plugin` for uploading files to the Pico, however [Thonny](https://thonny.org) also works.
 *  `openssl` and `rsa` package for reading cryptographic keys
 
 ### Preparing a service account in Google IAM
@@ -39,14 +29,14 @@ To access a Google sheet, the project needs a service account:
 *  Create a key
 *  Download a JSON file with the key
 
-The key is encoded in PKCS1 format. Unfortunately, the project doesn't support PKCS1 yet. You need to convert the key to the format which the project undrstands:
+The key is encoded in PKCS1 format. Unfortunately, the project doesn't support PKCS1 yet. You need to convert the key to the format which the project understands:
 
 ```
 $ cd scripts
 $ sh extract_key.sh ../google_key.json ../key.json
 ```
 
-You'll need `key.json` and an email for the sercvice account.
+You'll need `key.json` and an email for the service account.
 
 ### Creating a Google sheet
 
@@ -105,9 +95,7 @@ The switch turns on the configuration mode. In this mode the device starts up a 
 The server provides a web form for updating the configuration of the device.
 
 ## Acknowledgement
-
-*  [The implementation of RSA signing](src/rsa) is based on [python-rsa](https://github.com/sybrenstuvel/python-rsa/) package
-*  [The implementation of NTP client](src/ntp.py) is based on [ntptime.py](https://github.com/micropython/micropython/blob/master/ports/esp8266/modules/ntptime.py)
+Forked from https://github.com/artem-smotrakov/esp32-weather-google-sheets.
 
 ## Further enhancements
 

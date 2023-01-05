@@ -1,8 +1,10 @@
 from machine import Pin
 
 
+# Not used.
+
 # this class controls LEDs that report the following:
-# - WiFi connection
+# - Wi-Fi connection
 # - an error
 # - High CO2 level
 class Lights:
@@ -13,11 +15,11 @@ class Lights:
         self.error_led = Pin(error_led_pin, Pin.OUT)
         self.high_co2_led = Pin(high_co2_len_pin, Pin.OUT)
 
-    # turn on the LED for WiFi
+    # turn on the LED for Wi-Fi
     def wifi_on(self):
         self.wifi_led.on()
 
-    # turn off the LED for WiFi
+    # turn off the LED for Wi-Fi
     def wifi_off(self):
         self.wifi_led.off()
 

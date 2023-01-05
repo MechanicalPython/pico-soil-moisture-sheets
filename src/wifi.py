@@ -2,10 +2,10 @@ import network
 import time
 
 
-# the class starts a WiFi access point
+# the class starts a Wi-Fi access point
 class AccessPoint:
 
-    # initialize a new WiFi access point
+    # initialize a new Wi-Fi access point
     # the constructor takes ssid and password for the access point
     # make sure that the password is not too short
     # otherwise, an OSError may occur while staring the access point
@@ -29,26 +29,26 @@ class AccessPoint:
         return self.access_point.ifconfig()[0]
 
 
-# the class maintains a connection to a WiFi network
+# the class maintains a connection to a Wi-Fi network
 class Connection:
 
-    # initialize a connection to a WiFi network
-    def __init__(self, ssid, password, lights):
+    # initialize a connection to a Wi-Fi network
+    def __init__(self, ssid, password):
 
         # check if ssid and password are specified
-        if not ssid or not password:
-            lights.error_on()
-            raise Exception('ssid/password are not set')
+        # if not ssid or not password:
+        #     lights.error_on()
+        #     raise Exception('ssid/password are not set')
 
         self.ssid = ssid
         self.password = password
-        self.lights = lights
+        # self.lights = lights
         self.nic = network.WLAN(network.STA_IF)
 
     # connect to the specified wi-fi network
     def connect(self):
-        self.lights.wifi_off()
-        self.lights.error_off()
+        # self.lights.wifi_off()
+        # self.lights.error_off()
         print('connecting to network: %s' % self.ssid)
         self.nic.active(True)
         self.nic.connect(self.ssid, self.password)
@@ -61,11 +61,11 @@ class Connection:
 
         if self.nic.isconnected():
             print('connected')
-            self.lights.wifi_on()
-            self.lights.error_off()
+            # self.lights.wifi_on()
+            # self.lights.error_off()
         else:
             print('could not connect to WiFi')
-            self.lights.error_on()
+            # self.lights.error_on()
 
     # check if the connection is active
     def is_connected(self):

@@ -1,3 +1,6 @@
+# No longer used. Use standard lib ntp instead.
+
+
 try:
     import usocket as socket
 except:

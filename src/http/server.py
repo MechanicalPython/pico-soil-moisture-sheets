@@ -24,7 +24,7 @@ class HttpServer:
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind(addr)
         s.listen(5)
-        print('server started on %s:%s' % addr)
+        print(f'server started on {addr}')
 
         # main server loop
         while True:
@@ -57,7 +57,7 @@ class HttpServer:
                 # read data from the request
                 data = client_s.read(length).decode('utf-8')
 
-                # let the handler to process the request
+                # let the handler process the request
                 self.handler.handle(client_s, status_line, headers, data)
 
                 client_s.close()

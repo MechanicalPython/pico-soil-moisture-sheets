@@ -14,7 +14,7 @@ except:
     import json
 
 from rsa import pkcs1
-import ntp
+import ntptime as ntp
 
 
 def encode_dict_to_base64(d):

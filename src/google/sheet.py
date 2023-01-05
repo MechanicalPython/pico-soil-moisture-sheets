@@ -1,14 +1,15 @@
 try:
     import ujson as json
-except:
+except ImportError:
     import json
 
 try:
     import urequests as requests
-except:
+except ImportError:
     import requests
 
-import ntp
+import ntptime as ntp  # ntptime is standard library and get the real time. import as ntp to keep original code the same
+
 
 class Spreadsheet:
 
@@ -35,10 +36,8 @@ class Spreadsheet:
 
         url = self._url_template % (self._id, self._range, self._url_params)
         values.insert(0, ntp.time())
-        data = {'values': [ values ]}
-        headers = {}
-        headers['Content-Type'] = 'application/json'
-        headers['Authorization'] = 'Bearer %s' % token
+        data = {'values': [values]}
+        headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer %s' % token}
         response = requests.post(url, json=data, headers=headers)
 
         if not response:
@@ -46,4 +45,3 @@ class Spreadsheet:
 
         print('spreadsheet: response:')
         print(response.text)
-
