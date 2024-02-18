@@ -4,3 +4,5 @@ google_key.json
 .idea
 run_upload.sh
 /autowater-*.json
+*.DS_Store
+*__pycache__
