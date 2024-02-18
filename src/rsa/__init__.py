@@ -21,10 +21,8 @@ WARNING: this implementation does not use compression of the cleartext input to
 prevent repetitions, or other common security improvements. Use with care.
 
 """
-
-from rsa.key import PrivateKey
-from rsa.pkcs1 import sign, sign_hash, compute_hash, \
-    DecryptionError, VerificationError
+from key import PrivateKey
+from pkcs1 import sign, sign_hash, compute_hash, DecryptionError, VerificationError
 
 __author__ = "Sybren Stuvel, Barry Mead and Yesudeep Mangalapilly"
 __date__ = "2018-09-16"

@@ -17,7 +17,7 @@
 """Common functionality shared by several modules."""
 
 
-from rsa._compat import is_integer
+from _compat import is_integer
 
 
 class NotRelativePrimeError(ValueError):

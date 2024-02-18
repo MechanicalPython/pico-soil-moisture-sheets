@@ -19,8 +19,8 @@ try:
 except:
     import json
 
-import rsa.common
-import rsa.core
+import common
+import core
 
 DEFAULT_EXPONENT = 65537
 
@@ -87,7 +87,7 @@ class PrivateKey(AbstractKey):
         # Calculate exponents and coefficient.
         self.exp1 = int(d % (p - 1))
         self.exp2 = int(d % (q - 1))
-        self.coef = rsa.common.inverse(q, p)
+        self.coef = common.inverse(q, p)
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -134,7 +134,7 @@ class PrivateKey(AbstractKey):
         :rtype: int
         """
 
-        return rsa.core.encrypt_int(message, self.d, self.n)
+        return core.encrypt_int(message, self.d, self.n)
 
     @classmethod
     def _load_pkcs1_json(cls, keyfile):

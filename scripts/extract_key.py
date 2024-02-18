@@ -1,6 +1,8 @@
 import json
 import sys
-from rsa import PrivateKey
+
+from src import rsa
+
 
 with open(sys.argv[1], 'rb') as input:
     key = PrivateKey.load_pkcs1(input.read())
